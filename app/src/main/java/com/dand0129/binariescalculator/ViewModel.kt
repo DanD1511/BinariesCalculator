@@ -10,15 +10,15 @@ class ViewModel: ViewModel() {
     private val _number1 = MutableLiveData("")
     val number1: LiveData<String> get() = _number1
 
-    private val _result = MutableLiveData(0)
-    val result: LiveData <Int> get() = _result
+    private val _result = MutableLiveData<Long>(0)
+    val result: LiveData <Long> get() = _result
 
     private val _textToShow = MutableLiveData("")
     val textToShow: LiveData <String> get() = _textToShow
 
     fun binToDec(number: String) {
         if(isBinary(number)){
-            _result.value = number.toInt(2)
+            _result.value = number.toInt(2).toLong()
             _textToShow.value = _result.value.toString()
         } else{
             _textToShow.value = "Please enter a binary number"
@@ -38,7 +38,7 @@ class ViewModel: ViewModel() {
     fun decToBin(number: String) {
         if (isDecimal(number)) {
             val currentDecimalNumber = Integer.toBinaryString(number.toInt()).toInt()
-            _result.value = currentDecimalNumber
+            _result.value = currentDecimalNumber.toLong()
             _textToShow.value = _result.value.toString()
         } else {
             _textToShow.value = "Please enter a decimal number"
