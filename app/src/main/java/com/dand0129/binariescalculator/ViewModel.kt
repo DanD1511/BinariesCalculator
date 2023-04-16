@@ -4,22 +4,19 @@ package com.dand0129.binariescalculator
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import java.util.function.LongBinaryOperator
 
 class ViewModel: ViewModel() {
 
     private val _number1 = MutableLiveData("")
     val number1: LiveData<String> get() = _number1
 
-    private val _result = MutableLiveData<Long>(0)
-    val result: LiveData <Long> get() = _result
-
     private val _textToShow = MutableLiveData("")
     val textToShow: LiveData <String> get() = _textToShow
 
     fun binToDec(number: String) {
         if(isBinary(number)){
-            _result.value = number.toInt(2).toLong()
-            _textToShow.value = _result.value.toString()
+            _textToShow.value = number.toLong(2).toString()
         } else{
             _textToShow.value = "Please enter a binary number"
         }
@@ -37,9 +34,8 @@ class ViewModel: ViewModel() {
 
     fun decToBin(number: String) {
         if (isDecimal(number)) {
-            val currentDecimalNumber = Integer.toBinaryString(number.toInt()).toInt()
-            _result.value = currentDecimalNumber.toLong()
-            _textToShow.value = _result.value.toString()
+            val currentDecimalNumber = number.toLong()
+            _textToShow.value = currentDecimalNumber.toString(2)
         } else {
             _textToShow.value = "Please enter a decimal number"
         }
