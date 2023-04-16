@@ -32,13 +32,13 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            PrincipalScreen(viewModel)
+            MainScreen(viewModel)
         }
     }
 }
 
 @Composable
-private fun PrincipalScreen(viewModel: ViewModel) {
+private fun MainScreen(viewModel: ViewModel) {
     var shouldShowScreen by rememberSaveable { mutableStateOf<Boolean>(true) }
     var shouldShowScreen2 by rememberSaveable { mutableStateOf<Boolean>(true) }
 
