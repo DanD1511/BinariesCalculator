@@ -71,7 +71,7 @@ fun WelcomeScreen(
         Button(onClick = {
             onContinueClicked2()
         }) {
-            Text(text = "Dec to Bin")
+            Text(text = "Dec to Bin!")
         }
     }
 }
