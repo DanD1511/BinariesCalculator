@@ -30,7 +30,21 @@ class ViewModel: ViewModel() {
         return pattern.matches(number)
     }
 
+    private fun isDecimal(number: String): Boolean {
+        val pattern = Regex("^[0123456789]+\$")
+        return pattern.matches(number)
+    }
+
     fun decToBin(number: String) {
+        if (isDecimal(number)) {
+            val currentDecimalNumber = Integer.toBinaryString(number.toInt()).toInt()
+            _result.value = currentDecimalNumber
+            _textToShow.value = _result.value.toString()
+        } else {
+            _textToShow.value = "Please enter a decimal number"
+        }
 
     }
+
 }
+
