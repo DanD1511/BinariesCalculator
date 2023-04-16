@@ -1,5 +1,6 @@
 package com.dand0129.binariescalculator
 
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,7 +8,7 @@ import androidx.lifecycle.ViewModel
 class ViewModel: ViewModel() {
 
     private val _number1 = MutableLiveData("")
-    val number1: LiveData <String> get() = _number1
+    val number1: LiveData<String> get() = _number1
 
     private val _result = MutableLiveData(0)
     val result: LiveData <Int> get() = _result
