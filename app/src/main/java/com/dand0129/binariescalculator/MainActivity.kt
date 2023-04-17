@@ -348,11 +348,9 @@ fun InputNumber(
                 }) {
                     Text(
                         text = "Calculate",
-                        letterSpacing = 10.sp,
-                        fontSize = 20.sp,
+                        fontSize = 25.sp,
                         fontFamily = FontFamily(Font(R.font.tron)),
-                        textAlign = TextAlign.Center,
-                        color = Color.White,
+                        color = Color.Black,
                         modifier = Modifier.align(Alignment.CenterVertically),
                         fontWeight = FontWeight.W100
                     )
