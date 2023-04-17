@@ -230,8 +230,8 @@ fun WelcomeScreen(
 fun BinToDec(viewModel: ViewModel) {
     Column() {
         InputNumber(
-            colorBox = Color(0xff3c94ff),
-            colorField = Color(0xffff8b04),
+            colorBox = Color(0xFF2279cb),
+            colorField = Color(0xFFf98b08),
             viewModel = viewModel,
             title = "Bin To Dec",
             onButtonClicked = { value ->
@@ -246,8 +246,8 @@ fun BinToDec(viewModel: ViewModel) {
 fun DecToBin(viewModel: ViewModel) {
     Column() {
         InputNumber(
-            colorBox = Color(0xffff8b04),
-            colorField = Color(0xff3c94ff),
+            colorBox = Color(0xFFf98b08),
+            colorField = Color(0xFF2279cb),
             viewModel = viewModel,
             title = "Dec to Bin",
             onButtonClicked = { value ->
@@ -310,7 +310,11 @@ fun InputNumber(
                     inputNumber.value = it
                 },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                textStyle = TextStyle.Default.copy(fontSize = 20.sp, color = Color.White),
+                textStyle = TextStyle.Default.copy(
+                    fontSize = 20.sp,
+                    color = Color.White,
+                    fontFamily = FontFamily(Font(R.font.tron))
+                ),
             )
             Button(
                 modifier = Modifier
@@ -322,8 +326,12 @@ fun InputNumber(
             ) {
                 Text(
                     text = "Calculate",
-                    fontSize = 20.sp,
-                    color = Color.White
+                    fontSize = 25.sp,
+                    fontFamily = FontFamily(Font(R.font.tron)),
+                    textAlign = TextAlign.Center,
+                    color = Color.White,
+                    modifier = Modifier.align(Alignment.CenterVertically),
+                    fontWeight = FontWeight.W100
                 )
             }
         }
