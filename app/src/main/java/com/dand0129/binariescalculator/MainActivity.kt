@@ -2,6 +2,7 @@ package com.dand0129.binariescalculator
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.background
@@ -63,9 +64,20 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun MainScreen(viewModel: ViewModel) {
-    var shouldShowScreen by rememberSaveable { mutableStateOf<Boolean>(true) }
-    var shouldShowScreen2 by rememberSaveable { mutableStateOf<Boolean>(true) }
+fun MainScreen(viewModel: ViewModel) {
+    var shouldShowScreen by rememberSaveable { mutableStateOf(true) }
+    var shouldShowScreen2 by rememberSaveable { mutableStateOf(true) }
+
+    BackHandler(onBack = {
+        if (!shouldShowScreen && !shouldShowScreen2) {
+            shouldShowScreen = true
+            shouldShowScreen2 = true
+        } else if (!shouldShowScreen) {
+            shouldShowScreen = true
+        } else if (!shouldShowScreen2) {
+            shouldShowScreen2 = true
+        }
+    })
 
     Surface {
         if (shouldShowScreen && shouldShowScreen2) {
@@ -77,9 +89,11 @@ private fun MainScreen(viewModel: ViewModel) {
             BinToDec(viewModel)
         } else if (!shouldShowScreen2) {
             DecToBin(viewModel)
-        } else return@Surface
+        }
     }
 }
+
+
 
 @Composable
 fun WelcomeScreen(
@@ -241,7 +255,6 @@ fun BinToDec(viewModel: ViewModel) {
             viewModel.binToDec(value)
         }
     )
-
 }
 
 
