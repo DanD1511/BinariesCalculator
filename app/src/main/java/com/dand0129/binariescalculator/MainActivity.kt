@@ -70,10 +70,13 @@ fun MainScreen(viewModel: ViewModel) {
         if (!shouldShowScreen && !shouldShowScreen2) {
             shouldShowScreen = true
             shouldShowScreen2 = true
+            viewModel.clearText()
         } else if (!shouldShowScreen) {
             shouldShowScreen = true
+            viewModel.clearText()
         } else if (!shouldShowScreen2) {
             shouldShowScreen2 = true
+            viewModel.clearText()
         }
     })
 

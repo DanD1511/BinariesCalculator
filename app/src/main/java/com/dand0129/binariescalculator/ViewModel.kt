@@ -42,5 +42,9 @@ class ViewModel: ViewModel() {
 
     }
 
+    fun clearText() {
+        _textToShow.value = ""
+    }
+
 }
 
