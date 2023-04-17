@@ -19,14 +19,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.AlertDialogDefaults.shape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -92,7 +90,6 @@ fun MainScreen(viewModel: ViewModel) {
         }
     }
 }
-
 
 
 @Composable
@@ -260,17 +257,15 @@ fun BinToDec(viewModel: ViewModel) {
 
 @Composable
 fun DecToBin(viewModel: ViewModel) {
-    Column() {
-        InputNumber(
-            colorBox = Color(0xFFf98b08),
-            colorField = Color(0xFF2279cb),
-            viewModel = viewModel,
-            title = "Dec to Bin",
-            onButtonClicked = { value ->
-                viewModel.decToBin(value)
-            }
-        )
-    }
+    InputNumber(
+        colorBox = Color(0xFFf98b08),
+        colorField = Color(0xFF2279cb),
+        viewModel = viewModel,
+        title = "Dec to Bin",
+        onButtonClicked = { value ->
+            viewModel.decToBin(value)
+        }
+    )
 }
 
 
@@ -403,19 +398,21 @@ fun InputNumber(
                 }
             }
 
-            Text(
+            Box(
                 modifier = Modifier
-                    .padding(20.dp)
-                    .align(Alignment.CenterHorizontally)
-                    .fillMaxWidth()
-                    .fillMaxSize(0.3f)
+                    .width(250.dp)
+                    .height(100.dp)
                     .background(
                         Color(0xff2b2b2b),
                         shape = RoundedCornerShape(10)
-                    ),
-                text = textToShow!!,
-                textAlign = TextAlign.Center,
-            )
+                    )
+            ) {
+                Text(
+                    modifier = Modifier.align(Alignment.Center),
+                    text = textToShow!!,
+                    textAlign = TextAlign.Center,
+                )
+            }
         }
     }
 }
