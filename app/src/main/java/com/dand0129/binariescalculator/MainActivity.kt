@@ -18,12 +18,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.AlertDialogDefaults.shape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldColors
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -33,6 +36,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.geometry.center
 import androidx.compose.ui.graphics.Color
@@ -228,17 +232,16 @@ fun WelcomeScreen(
 
 @Composable
 fun BinToDec(viewModel: ViewModel) {
-    Column() {
-        InputNumber(
-            colorBox = Color(0xFF2279cb),
-            colorField = Color(0xFFf98b08),
-            viewModel = viewModel,
-            title = "Bin To Dec",
-            onButtonClicked = { value ->
-                viewModel.binToDec(value)
-            }
-        )
-    }
+    InputNumber(
+        colorBox = Color(0xFF2279cb),
+        colorField = Color(0xFFf98b08),
+        viewModel = viewModel,
+        title = "Bin To Dec",
+        onButtonClicked = { value ->
+            viewModel.binToDec(value)
+        }
+    )
+
 }
 
 
@@ -270,84 +273,136 @@ fun InputNumber(
     val inputNumber = remember { mutableStateOf("") }
     val textToShow by viewModel.textToShow.observeAsState()
 
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xff010101)),
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
+            .background(Color(0xff010101))
     ) {
-        Text(
-            modifier = Modifier
-                .padding(20.dp)
-                .align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center,
-            text = title,
-            fontSize = 42.sp,
-            color = Color(0xFFf5f3ff)
-        )
         Column(
             modifier = Modifier
-                .padding(20.dp)
-                .fillMaxWidth()
-                .fillMaxHeight(0.25f)
-                .background(
-                    color = colorBox,
-                    shape = RoundedCornerShape(10)
-                ),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-
-            ) {
-            TextField(
+                .align(Alignment.TopCenter)
+                .padding(top = 50.dp, start = 50.dp, end = 50.dp, bottom = 50.dp)
+        ) {
+            Box(
                 modifier = Modifier
-                    .padding(20.dp)
                     .background(
-                        color = colorField
-                    ),
-                value = inputNumber.value,
-                onValueChange = {
-                    inputNumber.value = it
-                },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                textStyle = TextStyle.Default.copy(
-                    fontSize = 20.sp,
-                    color = Color.White,
-                    fontFamily = FontFamily(Font(R.font.tron))
-                ),
-            )
-            Button(
-                modifier = Modifier
-                    .fillMaxWidth(0.5f),
-                colors = ButtonDefaults.buttonColors(colorField),
-                onClick = {
-                    onButtonClicked(inputNumber.value)
-                }
+                        color = Color(0xFF2c2c2c),
+                        shape = RoundedCornerShape(15.dp)
+                    )
+                    .height(250.dp)
+                    .width(250.dp)
+                    .border(
+                        width = 1.dp,
+                        color = Color.White,
+                        shape = RoundedCornerShape(15.dp)
+                    )
             ) {
-                Text(
-                    text = "Calculate",
-                    fontSize = 25.sp,
-                    fontFamily = FontFamily(Font(R.font.tron)),
-                    textAlign = TextAlign.Center,
-                    color = Color.White,
-                    modifier = Modifier.align(Alignment.CenterVertically),
-                    fontWeight = FontWeight.W100
-                )
+                Box(
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .background(
+                            color = Color.Black,
+                            shape = RoundedCornerShape(15.dp)
+                        )
+                        .height(200.dp)
+                        .width(200.dp)
+                        .border(
+                            width = 1.dp,
+                            color = Color.White,
+                            shape = RoundedCornerShape(15.dp)
+                        )
+                ) {
+                    Text(
+                        modifier = Modifier.align(Alignment.Center),
+                        text = "Bin to Dec",
+                        color = Color.White,
+                        fontSize = 35.sp,
+                        fontFamily = FontFamily(Font(R.font.tron)),
+                        textAlign = TextAlign.Center,
+                    )
+                }
             }
         }
-
-        Text(
+        Spacer(modifier = Modifier.height(100.dp))
+        Column(
             modifier = Modifier
-                .padding(20.dp)
-                .align(Alignment.CenterHorizontally)
-                .fillMaxWidth()
-                .fillMaxSize(0.3f)
-                .background(
-                    Color(0xff2b2b2b),
-                    shape = RoundedCornerShape(10)
-                ),
-            text = textToShow!!,
-            textAlign = TextAlign.Center,
-        )
+                .align(Alignment.BottomCenter)
+                .padding(bottom = 100.dp, start = 50.dp, end = 50.dp),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Column(
+                modifier = Modifier
+                    .padding(20.dp)
+                    .width(250.dp)
+                    .border(
+                        width = 1.dp,
+                        color = Color.White,
+                        shape = RoundedCornerShape(15.dp)
+                    )
+                    .background(
+                        color = Color(0xFF2c2c2c),
+                        shape = RoundedCornerShape(10)
+                    ),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+
+                ) {
+                TextField(
+                    colors = TextFieldDefaults.textFieldColors(
+                        containerColor = Color(0xFF2279cb)
+                    ),
+                    modifier = Modifier
+                        .padding(20.dp)
+                        .border(
+                            width = 1.dp,
+                            color = Color.White,
+                            shape = RoundedCornerShape(15.dp)
+                        )
+                        .clip(RoundedCornerShape(15.dp)),
+                    value = inputNumber.value,
+                    onValueChange = {
+                        inputNumber.value = it
+                    },
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                    textStyle = TextStyle.Default.copy(
+                        fontSize = 20.sp,
+                        fontFamily = FontFamily(Font(R.font.tron))
+                    )
+                )
+                Button(
+                    modifier = Modifier
+                        .fillMaxWidth(0.5f),
+                    colors = ButtonDefaults.buttonColors(colorField),
+                    onClick = {
+                        onButtonClicked(inputNumber.value)
+                    }
+                ) {
+                    Text(
+                        text = "Calculate",
+                        fontSize = 25.sp,
+                        fontFamily = FontFamily(Font(R.font.tron)),
+                        textAlign = TextAlign.Center,
+                        color = Color.White,
+                        modifier = Modifier.align(Alignment.CenterVertically),
+                        fontWeight = FontWeight.W100
+                    )
+                }
+            }
+
+            Text(
+                modifier = Modifier
+                    .padding(20.dp)
+                    .align(Alignment.CenterHorizontally)
+                    .fillMaxWidth()
+                    .fillMaxSize(0.3f)
+                    .background(
+                        Color(0xff2b2b2b),
+                        shape = RoundedCornerShape(10)
+                    ),
+                text = textToShow!!,
+                textAlign = TextAlign.Center,
+            )
+        }
     }
 }
