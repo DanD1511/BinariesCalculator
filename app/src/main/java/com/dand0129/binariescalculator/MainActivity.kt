@@ -79,10 +79,8 @@ fun MainScreen(viewModel: ViewModel) {
 
     Surface {
         if (shouldShowScreen && shouldShowScreen2) {
-            WelcomeScreen(
-                onContinueClicked1 = { shouldShowScreen = false },
-                onContinueClicked2 = { shouldShowScreen2 = false }
-            )
+            WelcomeScreen(onContinueClicked1 = { shouldShowScreen = false },
+                onContinueClicked2 = { shouldShowScreen2 = false })
         } else if (!shouldShowScreen) {
             BinToDec(viewModel)
         } else if (!shouldShowScreen2) {
@@ -94,8 +92,7 @@ fun MainScreen(viewModel: ViewModel) {
 
 @Composable
 fun WelcomeScreen(
-    onContinueClicked1: () -> Unit,
-    onContinueClicked2: () -> Unit
+    onContinueClicked1: () -> Unit, onContinueClicked2: () -> Unit
 ) {
     val largeRadialGradient = object : ShaderBrush() {
         override fun createShader(size: Size): Shader {
@@ -124,30 +121,24 @@ fun WelcomeScreen(
             Box(
                 modifier = Modifier
                     .background(
-                        color = Color(0xFF2c2c2c),
-                        shape = RoundedCornerShape(15.dp)
+                        color = Color(0xFF2c2c2c), shape = RoundedCornerShape(15.dp)
                     )
                     .height(300.dp)
                     .width(300.dp)
                     .border(
-                        width = 1.dp,
-                        color = Color.White,
-                        shape = RoundedCornerShape(15.dp)
+                        width = 1.dp, color = Color.White, shape = RoundedCornerShape(15.dp)
                     )
             ) {
                 Box(
                     modifier = Modifier
                         .align(Alignment.Center)
                         .background(
-                            brush = largeRadialGradient,
-                            shape = RoundedCornerShape(15.dp)
+                            brush = largeRadialGradient, shape = RoundedCornerShape(15.dp)
                         )
                         .height(250.dp)
                         .width(250.dp)
                         .border(
-                            width = 1.dp,
-                            color = Color.White,
-                            shape = RoundedCornerShape(15.dp)
+                            width = 1.dp, color = Color.White, shape = RoundedCornerShape(15.dp)
                         )
                 ) {
                     Text(
@@ -167,14 +158,12 @@ fun WelcomeScreen(
                 .padding(bottom = 100.dp, start = 50.dp, end = 50.dp)
         ) {
             Box(
-                modifier = Modifier
-                    .padding(top = 20.dp)
+                modifier = Modifier.padding(top = 20.dp)
             ) {
                 Button(
                     onClick = {
                         onContinueClicked1()
-                    },
-                    modifier = Modifier
+                    }, modifier = Modifier
                         .height(60.dp)
                         .fillMaxWidth()
                         .background(
@@ -184,10 +173,8 @@ fun WelcomeScreen(
                             width = 1.dp,
                             color = Color(0xFF58caf3),
                             shape = RoundedCornerShape(10.dp)
-                        ),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFF2279cb),
-                        contentColor = Color.White
+                        ), colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFF2279cb), contentColor = Color.White
                     )
                 ) {
                     Text(
@@ -202,28 +189,23 @@ fun WelcomeScreen(
             }
             Spacer(modifier = Modifier.height(50.dp))
             Box(
-                modifier = Modifier
-                    .padding(bottom = 20.dp)
+                modifier = Modifier.padding(bottom = 20.dp)
             ) {
                 Button(
                     onClick = {
                         onContinueClicked2()
-                    },
-                    modifier = Modifier
+                    }, modifier = Modifier
                         .height(60.dp)
                         .fillMaxWidth()
                         .background(
-                            shape = RoundedCornerShape(10.dp),
-                            color = Color(0xFFf98b08)
+                            shape = RoundedCornerShape(10.dp), color = Color(0xFFf98b08)
                         )
                         .border(
                             width = 1.dp,
                             color = Color(0xFFffff30),
                             shape = RoundedCornerShape(10.dp)
-                        ),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFFf98b08),
-                        contentColor = Color.White
+                        ), colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFFf98b08), contentColor = Color.White
                     )
                 ) {
                     Text(
@@ -243,29 +225,25 @@ fun WelcomeScreen(
 
 @Composable
 fun BinToDec(viewModel: ViewModel) {
-    InputNumber(
-        colorBox = Color(0xFF2279cb),
+    InputNumber(colorBox = Color(0xFF2279cb),
         colorField = Color(0xFFf98b08),
         viewModel = viewModel,
         title = "Bin To Dec",
         onButtonClicked = { value ->
             viewModel.binToDec(value)
-        }
-    )
+        })
 }
 
 
 @Composable
 fun DecToBin(viewModel: ViewModel) {
-    InputNumber(
-        colorBox = Color(0xFFf98b08),
+    InputNumber(colorBox = Color(0xFFf98b08),
         colorField = Color(0xFF2279cb),
         viewModel = viewModel,
         title = "Dec to Bin",
         onButtonClicked = { value ->
             viewModel.decToBin(value)
-        }
-    )
+        })
 }
 
 
@@ -287,42 +265,37 @@ fun InputNumber(
             .background(Color(0xff010101))
     ) {
         Column(
-            modifier = Modifier
-                .align(Alignment.TopCenter)
-                .padding(top = 50.dp, start = 50.dp, end = 50.dp, bottom = 50.dp)
+            modifier = Modifier.padding(20.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Box(
                 modifier = Modifier
                     .background(
-                        color = Color(0xFF2c2c2c),
-                        shape = RoundedCornerShape(15.dp)
+                        color = Color(0xFF2c2c2c), shape = RoundedCornerShape(15.dp)
                     )
-                    .height(250.dp)
-                    .width(250.dp)
+                    .fillMaxHeight(0.2f)
+                    .fillMaxWidth()
                     .border(
-                        width = 1.dp,
-                        color = Color.White,
-                        shape = RoundedCornerShape(15.dp)
+                        width = 1.dp, color = Color.White, shape = RoundedCornerShape(15.dp)
                     )
             ) {
                 Box(
                     modifier = Modifier
                         .align(Alignment.Center)
+                        .padding(20.dp)
                         .background(
-                            color = Color.Black,
-                            shape = RoundedCornerShape(15.dp)
+                            color = Color.Black, shape = RoundedCornerShape(15.dp)
                         )
-                        .height(200.dp)
-                        .width(200.dp)
+                        .fillMaxHeight(0.8f)
+                        .fillMaxWidth()
                         .border(
-                            width = 1.dp,
-                            color = Color.White,
-                            shape = RoundedCornerShape(15.dp)
+                            width = 1.dp, color = Color.White, shape = RoundedCornerShape(15.dp)
                         )
                 ) {
                     Text(
                         modifier = Modifier.align(Alignment.Center),
-                        text = "Bin to Dec",
+                        text = title,
                         color = Color.White,
                         fontSize = 35.sp,
                         fontFamily = FontFamily(Font(R.font.tron)),
@@ -330,44 +303,30 @@ fun InputNumber(
                     )
                 }
             }
-        }
-        Spacer(modifier = Modifier.height(100.dp))
-        Column(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .padding(bottom = 100.dp, start = 50.dp, end = 50.dp),
-            verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+            Spacer(modifier = Modifier.height(20.dp))
             Column(
-                modifier = Modifier
-                    .padding(20.dp)
-                    .width(250.dp)
-                    .border(
-                        width = 1.dp,
-                        color = Color.White,
-                        shape = RoundedCornerShape(15.dp)
-                    )
-                    .background(
-                        color = Color(0xFF2c2c2c),
-                        shape = RoundedCornerShape(10)
-                    ),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
-
-                ) {
+                modifier = Modifier
+                    .fillMaxHeight(0.35f)
+                    .fillMaxWidth()
+                    .border(
+                        width = 1.dp, color = Color.White, shape = RoundedCornerShape(10)
+                    )
+                    .background(
+                        color = colorBox, shape = RoundedCornerShape(10)
+                    ),
+            ) {
                 TextField(
                     colors = TextFieldDefaults.textFieldColors(
-                        containerColor = Color(0xFF2279cb)
+                        containerColor = colorField
                     ),
                     modifier = Modifier
                         .padding(20.dp)
                         .border(
-                            width = 1.dp,
-                            color = Color.White,
-                            shape = RoundedCornerShape(15.dp)
+                            width = 1.dp, color = Color.White, shape = RoundedCornerShape(15)
                         )
-                        .clip(RoundedCornerShape(15.dp)),
+                        .clip(RoundedCornerShape(15)),
                     value = inputNumber.value,
                     onValueChange = {
                         inputNumber.value = it
@@ -375,20 +334,22 @@ fun InputNumber(
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     textStyle = TextStyle.Default.copy(
                         fontSize = 20.sp,
-                        fontFamily = FontFamily(Font(R.font.tron))
+                        fontFamily = FontFamily(Font(R.font.asul_bold)),
+                        color = Color.White
                     )
                 )
-                Button(
-                    modifier = Modifier
-                        .fillMaxWidth(0.5f),
-                    colors = ButtonDefaults.buttonColors(colorField),
-                    onClick = {
-                        onButtonClicked(inputNumber.value)
-                    }
-                ) {
+                Button(modifier = Modifier
+                    .fillMaxWidth(0.7f)
+                    .padding(10.dp)
+                    .background(
+                        shape = RoundedCornerShape(10), color = colorField
+                    ), colors = ButtonDefaults.buttonColors(colorField), onClick = {
+                    onButtonClicked(inputNumber.value)
+                }) {
                     Text(
                         text = "Calculate",
-                        fontSize = 25.sp,
+                        letterSpacing = 10.sp,
+                        fontSize = 20.sp,
                         fontFamily = FontFamily(Font(R.font.tron)),
                         textAlign = TextAlign.Center,
                         color = Color.White,
@@ -397,20 +358,22 @@ fun InputNumber(
                     )
                 }
             }
-
+            Spacer(modifier = Modifier.height(20.dp))
             Box(
                 modifier = Modifier
-                    .width(250.dp)
-                    .height(100.dp)
+                    .fillMaxWidth()
+                    .fillMaxHeight(0.3f)
                     .background(
-                        Color(0xff2b2b2b),
-                        shape = RoundedCornerShape(10)
-                    )
+                        color = Color(0xff2b2b2b), shape = RoundedCornerShape(10)
+                    ), contentAlignment = Alignment.Center
             ) {
                 Text(
                     modifier = Modifier.align(Alignment.Center),
                     text = textToShow!!,
                     textAlign = TextAlign.Center,
+                    color = Color.White,
+                    fontSize = 20.sp,
+                    fontFamily = FontFamily(Font(R.font.asul_bold))
                 )
             }
         }
